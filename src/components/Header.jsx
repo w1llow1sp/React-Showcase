@@ -3,7 +3,7 @@ function Header() {
         <nav className=' orange'>
             <div className='nav-wrapper'>
                 <a href='/' className='brand-logo'>
-                    w1llow1sp Showcase
+                    Showcase
                 </a>
                 <ul id='nav-mobile' className='right hide-on-med-and-down'>
                     <li>

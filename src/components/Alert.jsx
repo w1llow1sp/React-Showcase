@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { ShowcaseContext } from '../context';
 
-function Alert(props) {
-    const { name = '', closeAlert = Function.prototype } = props;
+function Alert() {
+    const { alertName: name = '', closeAlert = Function.prototype } =
+        useContext(ShowcaseContext);
 
     //отрисовываем по необходимости
     useEffect(() => {

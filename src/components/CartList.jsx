@@ -1,14 +1,10 @@
-// Список всего что есть в корзине
+import { useContext } from 'react';
+import { ShowcaseContext } from '../context';
 import { CartItem } from './CartItem';
 
-function CartList(props) {
-    const {
-        order = [],
-        hanldeCartShow = Function.prototype,
-        removeFromCart = Function.prototype,
-        decrimentAmount,
-        incrimentAmount,
-    } = props;
+function CartList() {
+    const { order = [], hanldeCartShow = Function.prototype } =
+        useContext(ShowcaseContext);
 
     const totalPrice = order.reduce((sum, element) => {
         return sum + element.regularPrice * element.amount;
@@ -20,20 +16,13 @@ function CartList(props) {
                 close
             </i>
             <li className='collection-item active'>Корзина</li>
-            {order.length ? (
-                order.map((item) => (
-                    <CartItem
-                        key={item.id}
-                        removeFromCart={removeFromCart}
-                        decrimentAmount={decrimentAmount}
-                        incrimentAmount={incrimentAmount}
-                        {...item}
-                    />
-                ))
-            ) : (
-                <li className='collection-item '> Корзина пуста</li>
-            )}
-
+            <div className='scrollbar-handler'>
+                {order.length ? (
+                    order.map((item) => <CartItem key={item.id} {...item} />)
+                ) : (
+                    <li className='collection-item '> Корзина пуста</li>
+                )}
+            </div>
             <li className='collection-item active Heading-h6'>
                 Общая стоимость: {totalPrice} руб.
             </li>

@@ -1,38 +1,38 @@
+import { useContext } from 'react';
+import { ShowcaseContext } from '../context';
+
 // Один элемент корзины
 
 function CartItem(props) {
-    const {
-        id,
-        name,
-        regularPrice,
-        amount,
-        removeFromCart = Function.prototype,
-        incrimentAmount = Function.prototype,
-        decrimentAmount = Function.prototype,
-    } = props;
+    const { id, name, regularPrice, amount } = props;
+
+    const { removeFromCart, incrimentAmount, decrimentAmount } =
+        useContext(ShowcaseContext);
 
     return (
-        <li className='collection-item '>
-            {name}{' '}
+        <li className='collection-item name container-cart '>
+            <div className='name'>{name}</div>{' '}
             <i
-                className='material-icons cart-amount'
-                onClick={() => decrimentAmount(id)}
+                className='material-icons cart-amount delete'
+                onClick={() => incrimentAmount(id)}
             >
                 remove
-            </i>{' '}
-            x {amount}{' '}
+            </i>
+            <div className='amount'> x {amount}</div>
             <i
-                className='material-icons cart-amount'
-                onClick={() => incrimentAmount(id)}
+                className='material-icons cart-amount add'
+                onClick={() => decrimentAmount(id)}
             >
                 add
             </i>{' '}
-            = {regularPrice * amount} руб.
+            <div className='total-price'>= {regularPrice * amount} руб.</div>
             <span
-                className='secondary-content'
+                className='secondary-content delete-all'
                 onClick={() => removeFromCart(id)}
             >
-                <i className='material-icons cart-delete'>close</i>
+                <i className='material-icons cart-delete delete-button'>
+                    close
+                </i>
             </span>
         </li>
     );

@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ShowcaseContext } from '../context';
+
 function GoodsItem(props) {
     const {
         mainId: id,
@@ -5,10 +8,8 @@ function GoodsItem(props) {
         displayDescription: description,
         price,
         displayAssets,
-        addToCart = Function.prototype,
     } = props;
-
-    // Вешаем addToCart на кнопку "Купить"
+    const { addToCart } = useContext(ShowcaseContext);
 
     const img = displayAssets.map((el) => el.full_background);
 
